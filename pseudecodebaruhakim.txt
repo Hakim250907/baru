@@ -1,0 +1,72 @@
+START
+
+Buat struktur Kendaraan
+    plat   : string
+    jenis  : string
+    jam    : integer
+END struktur
+
+FUNGSI cari(data[], jumlah, platCari)
+    UNTUK i dari 0 sampai jumlah-1
+        JIKA data[i].plat == platCari
+            KEMBALIKAN i
+    KEMBALIKAN -1
+END fungsi
+
+Deklarasi array dataParkir[50] bertipe Kendaraan
+Deklarasi jumlah = 0
+Deklarasi pilihan
+
+DO
+    Tampilkan menu:
+        1. Masuk Kendaraan
+        2. Tampilkan Data Parkir
+        3. Hitung Biaya Parkir
+        4. Hapus Data Parkir
+        5. Keluar
+    Input pilihan
+
+    JIKA pilihan == 1
+        JIKA jumlah < 50
+            Input plat, jenis, jamMasuk
+            Simpan ke dataParkir[jumlah]
+            jumlah = jumlah + 1
+        ELSE
+            Tampilkan "Parkiran penuh"
+
+    ELSE JIKA pilihan == 2
+        JIKA jumlah == 0
+            Tampilkan "Data kosong"
+        ELSE
+            UNTUK i dari 0 sampai jumlah-1
+                Tampilkan nomor, plat, jenis, jamMasuk
+
+    ELSE JIKA pilihan == 3
+        Input plat dan jamKeluar
+        index = cari(dataParkir, jumlah, plat)
+
+        JIKA index != -1
+            lama = jamKeluar - dataParkir[index].jam
+            JIKA jenis == "motor"
+                biaya = lama × 2000
+            ELSE
+                biaya = lama × 5000
+            Tampilkan biaya
+        ELSE
+            Tampilkan "Data tidak ditemukan"
+
+    ELSE JIKA pilihan == 4
+        Input plat
+        index = cari(dataParkir, jumlah, plat)
+
+        JIKA index != -1
+            UNTUK i dari index sampai jumlah-2
+                dataParkir[i] = dataParkir[i+1]
+            jumlah = jumlah - 1
+            Tampilkan "Data dihapus"
+        ELSE
+            Tampilkan "Data tidak ditemukan"
+
+WHILE pilihan != 5
+
+END
